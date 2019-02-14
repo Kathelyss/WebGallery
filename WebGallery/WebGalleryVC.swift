@@ -60,6 +60,6 @@ extension WebGalleryVC: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let size = CGFloat(Int(collectionView.bounds.width / 3 - 8))
-        return CGSize(width: size, height: size * 2)
+        return CGSize(width: size, height: size * 1.5)
     }
 }

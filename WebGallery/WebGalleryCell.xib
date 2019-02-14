@@ -26,7 +26,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="750" text="Kitten" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bc-eh-1ug">
-                        <rect key="frame" x="0.0" y="248" width="186" height="11"/>
+                        <rect key="frame" x="0.0" y="251" width="186" height="13"/>
                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -35,10 +35,10 @@
             </view>
             <constraints>
                 <constraint firstItem="OMJ-2f-ijb" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="40j-UI-Rgw"/>
-                <constraint firstItem="9bc-eh-1ug" firstAttribute="top" secondItem="OMJ-2f-ijb" secondAttribute="bottom" id="As6-5d-oX9"/>
+                <constraint firstItem="9bc-eh-1ug" firstAttribute="top" secondItem="OMJ-2f-ijb" secondAttribute="bottom" constant="3" id="As6-5d-oX9"/>
                 <constraint firstItem="OMJ-2f-ijb" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="Jru-aL-TDb"/>
                 <constraint firstItem="9bc-eh-1ug" firstAttribute="leading" secondItem="OMJ-2f-ijb" secondAttribute="leading" id="XH9-Dj-gqf"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="9bc-eh-1ug" secondAttribute="bottom" constant="5" id="YuH-e2-MTi"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9bc-eh-1ug" secondAttribute="bottom" id="YuH-e2-MTi"/>
                 <constraint firstItem="9bc-eh-1ug" firstAttribute="trailing" secondItem="OMJ-2f-ijb" secondAttribute="trailing" id="fqg-eo-wYY"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="OMJ-2f-ijb" secondAttribute="trailing" id="tof-7i-2VN"/>
             </constraints>
@@ -48,7 +48,7 @@
                 <outlet property="imageView" destination="OMJ-2f-ijb" id="NNg-nG-JoR"/>
                 <outlet property="nameLabel" destination="9bc-eh-1ug" id="eZg-db-djh"/>
             </connections>
-            <point key="canvasLocation" x="161.59999999999999" y="143.92803598200899"/>
+            <point key="canvasLocation" x="161.59999999999999" y="143.02848575712144"/>
         </collectionViewCell>
     </objects>
 </document>
