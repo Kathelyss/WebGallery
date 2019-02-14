@@ -8,16 +8,23 @@
 
 import UIKit
 
+enum PhotoCategory {
+    case first, second
+}
+
 class WebGalleryVC: UIViewController {
     @IBOutlet var headerLabel: UILabel!
     @IBOutlet var firstCategoryButton: UIButton!
     @IBOutlet var secondCategoryButton: UIButton!
     @IBOutlet var collectionView: UICollectionView!
     
+    var dataSource = WebGalleryDataSourse()
+    var choosenCategory = PhotoCategory.first
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let cellNib = UINib.init(nibName: "WebGalleryCell", bundle: nil)
+        dataSource.createModels()
         collectionView.register(cellNib, forCellWithReuseIdentifier: "WebGalleryCell")
     }
     
@@ -33,6 +40,7 @@ class WebGalleryVC: UIViewController {
     @IBAction func tapFirstCategoryButton(_ sender: UIButton) {
         firstCategoryButton.titleLabel?.font = TextStyle.bold
         secondCategoryButton.titleLabel?.font = TextStyle.normal
+        choosenCategory = .first
         // request first category
         // nice transition
         collectionView.reloadData()
@@ -41,6 +49,7 @@ class WebGalleryVC: UIViewController {
     @IBAction func tapSecondCategoryButton(_ sender: UIButton) {
         firstCategoryButton.titleLabel?.font = TextStyle.normal
         secondCategoryButton.titleLabel?.font = TextStyle.bold
+        choosenCategory = .second
         // request second category
         // nice transition
         collectionView.reloadData()
@@ -48,15 +57,15 @@ class WebGalleryVC: UIViewController {
 }
 
 extension WebGalleryVC: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//    }
-//
+    //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    //
+    //    }
+    //
 }
 
 extension WebGalleryVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return choosenCategory == .first ? dataSource.cats.count : dataSource.dogs.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -65,7 +74,11 @@ extension WebGalleryVC: UICollectionViewDataSource {
                                                       for: indexPath) as! WebGalleryCell
         cell.imageView.layer.masksToBounds = true
         cell.imageView.layer.cornerRadius = 6
-        cell.imageView.image = #imageLiteral(resourceName: "kitten")
+        
+        cell.imageView.image = choosenCategory == .first ?
+            dataSource.cats[indexPath.row].image : dataSource.dogs[indexPath.row].image
+        cell.nameLabel.text = choosenCategory == .first ?
+            dataSource.cats[indexPath.row].name : dataSource.dogs[indexPath.row].name
         
         return cell
     }
