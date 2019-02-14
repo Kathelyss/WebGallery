@@ -16,6 +16,9 @@ class WebGalleryVC: UIViewController {
     @IBOutlet var headerLabel: UILabel!
     @IBOutlet var firstCategoryButton: UIButton!
     @IBOutlet var secondCategoryButton: UIButton!
+    @IBOutlet var selectionIndicator: UIView!
+    @IBOutlet var selectorIndicatorFirstCategoryConstraint: NSLayoutConstraint!
+    @IBOutlet var selectorIndicatorSecondCategoryConstraint: NSLayoutConstraint!
     @IBOutlet var collectionView: UICollectionView!
     
     var dataSource = WebGalleryDataSourse()
@@ -41,6 +44,8 @@ class WebGalleryVC: UIViewController {
         firstCategoryButton.titleLabel?.font = TextStyle.bold
         secondCategoryButton.titleLabel?.font = TextStyle.normal
         choosenCategory = .first
+        selectorIndicatorFirstCategoryConstraint.isActive = true
+        selectorIndicatorSecondCategoryConstraint.isActive = false
         // request first category
         // nice transition
         collectionView.reloadData()
@@ -50,6 +55,15 @@ class WebGalleryVC: UIViewController {
         firstCategoryButton.titleLabel?.font = TextStyle.normal
         secondCategoryButton.titleLabel?.font = TextStyle.bold
         choosenCategory = .second
+        selectorIndicatorFirstCategoryConstraint.isActive = false
+//        selectorIndicatorSecondCategoryConstraint.priority = 1000
+        selectorIndicatorSecondCategoryConstraint.isActive = true
+//        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveLinear], animations: {
+//            self.backView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+//            self.view.layoutIfNeeded()
+//        }) { finished in
+//
+//        }
         // request second category
         // nice transition
         collectionView.reloadData()
