@@ -18,7 +18,7 @@ class WebGalleryVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let cellNib = UINib.init(nibName: "WebGalleryCell", bundle: nil)
-        collectionView.register(cellNib, forCellWithReuseIdentifier: "WebGalleryCell")  
+        collectionView.register(cellNib, forCellWithReuseIdentifier: "WebGalleryCell")
     }
     
     /*
@@ -30,11 +30,28 @@ class WebGalleryVC: UIViewController {
      // Pass the selected object to the new view controller.
      }
      */
+    @IBAction func tapFirstCategoryButton(_ sender: UIButton) {
+        firstCategoryButton.titleLabel?.font = TextStyle.bold
+        secondCategoryButton.titleLabel?.font = TextStyle.normal
+        // request first category
+        // nice transition
+        collectionView.reloadData()
+    }
     
+    @IBAction func tapSecondCategoryButton(_ sender: UIButton) {
+        firstCategoryButton.titleLabel?.font = TextStyle.normal
+        secondCategoryButton.titleLabel?.font = TextStyle.bold
+        // request second category
+        // nice transition
+        collectionView.reloadData()
+    }
 }
 
 extension WebGalleryVC: UICollectionViewDelegate {
-    
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//
+//    }
+//
 }
 
 extension WebGalleryVC: UICollectionViewDataSource {

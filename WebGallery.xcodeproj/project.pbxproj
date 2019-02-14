@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94192A68221599C400E48F16 /* TextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94192A67221599C400E48F16 /* TextStyle.swift */; };
 		9444AF0A221564A8000D07EC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9444AF09221564A8000D07EC /* AppDelegate.swift */; };
 		9444AF0C221564A8000D07EC /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9444AF0B221564A8000D07EC /* HomeVC.swift */; };
 		9444AF0E221564A8000D07EC /* FavouritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9444AF0D221564A8000D07EC /* FavouritesVC.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		94192A67221599C400E48F16 /* TextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyle.swift; sourceTree = "<group>"; };
 		9444AF06221564A8000D07EC /* WebGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9444AF09221564A8000D07EC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9444AF0B221564A8000D07EC /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				9444AF14221564AB000D07EC /* LaunchScreen.storyboard */,
 				9444AF0F221564A8000D07EC /* Main.storyboard */,
 				9444AF09221564A8000D07EC /* AppDelegate.swift */,
+				94192A67221599C400E48F16 /* TextStyle.swift */,
 				9444AF0B221564A8000D07EC /* HomeVC.swift */,
 				9444AF0D221564A8000D07EC /* FavouritesVC.swift */,
 				9444AF1D22156A58000D07EC /* WebGalleryVC.swift */,
@@ -148,6 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94192A68221599C400E48F16 /* TextStyle.swift in Sources */,
 				9444AF1E22156A58000D07EC /* WebGalleryVC.swift in Sources */,
 				9444AF0E221564A8000D07EC /* FavouritesVC.swift in Sources */,
 				9444AF2122156BB6000D07EC /* WebGalleryCell.swift in Sources */,

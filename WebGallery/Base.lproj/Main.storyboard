@@ -76,20 +76,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PhotoWorld" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMw-b4-fY0">
+                                <rect key="frame" x="16" y="40" width="343" height="25"/>
+                                <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ko3-iy-BPp">
-                                <rect key="frame" x="16" y="65" width="171.5" height="40"/>
+                                <rect key="frame" x="16" y="65" width="343" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOw-me-hV6">
-                                        <rect key="frame" x="0.0" y="0.0" width="86" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="114.5" height="40"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
                                         <state key="normal" title="CATS">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="tapFirstCategoryButton:" destination="kNP-LB-X9s" eventType="touchUpInside" id="NU2-7n-vSo"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAY-0j-HSW">
-                                        <rect key="frame" x="86" y="0.0" width="85.5" height="40"/>
+                                        <rect key="frame" x="114.5" y="0.0" width="114" height="40"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
                                         <state key="normal" title="DOGS">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tapSecondCategoryButton:" destination="kNP-LB-X9s" eventType="touchUpInside" id="Mg7-L4-45a"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azW-5W-oFU">
+                                        <rect key="frame" x="228.5" y="0.0" width="114.5" height="40"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="14"/>
+                                        <state key="normal">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
@@ -99,7 +118,7 @@
                                 </constraints>
                             </stackView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="don-Xy-xJD">
-                                <rect key="frame" x="16" y="113" width="343" height="505"/>
+                                <rect key="frame" x="16" y="121" width="343" height="497"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="8" id="5Gq-zm-iFW">
                                     <size key="itemSize" width="51" height="55"/>
@@ -122,12 +141,6 @@
                                     <outlet property="delegate" destination="kNP-LB-X9s" id="a3I-96-P0u"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PhotoWorld" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMw-b4-fY0">
-                                <rect key="frame" x="16" y="40" width="343" height="25"/>
-                                <fontDescription key="fontDescription" name="SavoyeLetPlain" family="Savoye LET" pointSize="21"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -137,8 +150,8 @@
                             <constraint firstItem="pFs-iM-no7" firstAttribute="trailing" secondItem="CMw-b4-fY0" secondAttribute="trailing" constant="16" id="ES9-Eo-Xhl"/>
                             <constraint firstItem="CMw-b4-fY0" firstAttribute="top" secondItem="pFs-iM-no7" secondAttribute="top" constant="20" id="H2E-K3-AcQ"/>
                             <constraint firstItem="ko3-iy-BPp" firstAttribute="top" secondItem="CMw-b4-fY0" secondAttribute="bottom" id="KmL-Te-sRJ"/>
-                            <constraint firstItem="ko3-iy-BPp" firstAttribute="trailing" secondItem="pFs-iM-no7" secondAttribute="centerX" id="LuT-x1-pPT"/>
-                            <constraint firstItem="don-Xy-xJD" firstAttribute="top" secondItem="ko3-iy-BPp" secondAttribute="bottom" constant="8" id="ZmI-R0-Os4"/>
+                            <constraint firstItem="pFs-iM-no7" firstAttribute="trailing" secondItem="ko3-iy-BPp" secondAttribute="trailing" constant="16" id="LuT-x1-pPT"/>
+                            <constraint firstItem="don-Xy-xJD" firstAttribute="top" secondItem="ko3-iy-BPp" secondAttribute="bottom" constant="16" id="ZmI-R0-Os4"/>
                             <constraint firstItem="ko3-iy-BPp" firstAttribute="leading" secondItem="pFs-iM-no7" secondAttribute="leading" constant="16" id="bC8-NU-NIG"/>
                             <constraint firstItem="pFs-iM-no7" firstAttribute="trailing" secondItem="don-Xy-xJD" secondAttribute="trailing" constant="16" id="wC9-Qd-hFK"/>
                         </constraints>
