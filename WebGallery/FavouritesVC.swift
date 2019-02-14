@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  FavouritesVC.swift
 //  WebGallery
 //
 //  Created by kathelyss on 14/02/2019.
@@ -8,13 +8,10 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class FavouritesVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-
 }
 

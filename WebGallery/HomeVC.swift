@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  HomeVC.swift
 //  WebGallery
 //
 //  Created by kathelyss on 14/02/2019.
@@ -8,13 +8,10 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class HomeVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-
 }
 
