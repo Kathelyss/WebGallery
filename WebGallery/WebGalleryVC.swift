@@ -12,6 +12,13 @@ enum PhotoCategory {
     case first, second
 }
 
+struct Constant {
+    static let imageCornerRadius: CGFloat = 6
+    static let collectionViewColumnsCount: Int = 3
+    static let collectionViewCellsSpacing: CGFloat = 8
+    static let cellRatioHeightToWidth: CGFloat = 1.5
+}
+
 class WebGalleryVC: UIViewController {
     @IBOutlet var headerLabel: UILabel!
     @IBOutlet var firstCategoryButton: UIButton!
@@ -66,12 +73,7 @@ class WebGalleryVC: UIViewController {
             self?.view.layoutIfNeeded()
         })
         animator.startAnimation()
-//        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveLinear], animations: {
-//            self.backView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-//            self.view.layoutIfNeeded()
-//        }) { finished in
-//
-//        }
+
         // request second category
         // nice transition
         collectionView.reloadData()
@@ -95,7 +97,7 @@ extension WebGalleryVC: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WebGalleryCell",
                                                       for: indexPath) as! WebGalleryCell
         cell.imageView.layer.masksToBounds = true
-        cell.imageView.layer.cornerRadius = 6
+        cell.imageView.layer.cornerRadius = Constant.imageCornerRadius
         
         cell.imageView.image = choosenCategory == .first ?
             dataSource.cats[indexPath.row].image : dataSource.dogs[indexPath.row].image
@@ -111,7 +113,8 @@ extension WebGalleryVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGFloat(Int(collectionView.bounds.width / 3 - 8))
-        return CGSize(width: size, height: size * 1.5)
+        let cellWidth = CGFloat(Int(collectionView.bounds.width / CGFloat(Constant.collectionViewColumnsCount)
+            - Constant.collectionViewCellsSpacing))
+        return CGSize(width: cellWidth, height: cellWidth * Constant.cellRatioHeightToWidth)
     }
 }
