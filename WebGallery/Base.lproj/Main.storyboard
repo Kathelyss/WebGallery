@@ -203,29 +203,48 @@
         <!--ImageVC-->
         <scene sceneID="brE-w6-7jQ">
             <objects>
-                <viewController id="DjD-JB-nEG" customClass="ImageVC" customModule="WebGallery" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="DjD-JB-nEG" customClass="ImageVC" customModule="WebGallery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EyS-TH-sQ9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PHT-Ba-c4k">
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XWV-4T-zPj">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="d9D-Qt-Wup">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PHT-Ba-c4k">
                                 <rect key="frame" x="40" y="147" width="295" height="393"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PHT-Ba-c4k" secondAttribute="height" multiplier="3:4" id="qm7-U6-lG9"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="XWV-4T-zPj" firstAttribute="leading" secondItem="8JZ-0N-XtI" secondAttribute="leading" id="Nkk-Jp-Kys"/>
+                            <constraint firstItem="XWV-4T-zPj" firstAttribute="top" secondItem="8JZ-0N-XtI" secondAttribute="top" id="QVi-K7-beC"/>
+                            <constraint firstItem="8JZ-0N-XtI" firstAttribute="trailing" secondItem="XWV-4T-zPj" secondAttribute="trailing" id="W5z-SH-A1M"/>
+                            <constraint firstItem="8JZ-0N-XtI" firstAttribute="bottom" secondItem="XWV-4T-zPj" secondAttribute="bottom" id="Yd9-uv-N4m"/>
+                            <constraint firstItem="8JZ-0N-XtI" firstAttribute="trailing" secondItem="PHT-Ba-c4k" secondAttribute="trailing" constant="40" id="gW3-C4-bbH"/>
                             <constraint firstItem="PHT-Ba-c4k" firstAttribute="leading" secondItem="8JZ-0N-XtI" secondAttribute="leading" constant="40" id="hfu-Hj-IsE"/>
                             <constraint firstItem="PHT-Ba-c4k" firstAttribute="centerY" secondItem="8JZ-0N-XtI" secondAttribute="centerY" id="jWe-2B-Wvb"/>
-                            <constraint firstItem="PHT-Ba-c4k" firstAttribute="centerX" secondItem="8JZ-0N-XtI" secondAttribute="centerX" id="mCc-qJ-3Fd"/>
                             <constraint firstItem="PHT-Ba-c4k" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8JZ-0N-XtI" secondAttribute="top" constant="32" id="nsc-7B-OWY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8JZ-0N-XtI"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <connections>
-                        <outlet property="backView" destination="EyS-TH-sQ9" id="NjD-do-5Ii"/>
+                        <outlet property="blurView" destination="XWV-4T-zPj" id="SUn-8r-jVT"/>
                         <outlet property="imageView" destination="PHT-Ba-c4k" id="X9d-ID-OCq"/>
                     </connections>
                 </viewController>

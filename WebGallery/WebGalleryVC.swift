@@ -38,12 +38,6 @@ class WebGalleryVC: UIViewController {
         collectionView.register(cellNib, forCellWithReuseIdentifier: "WebGalleryCell")
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    
     @IBAction func tapFirstCategoryButton(_ sender: UIButton) {
         firstCategoryButton.titleLabel?.font = UIFont.bold
         secondCategoryButton.titleLabel?.font = UIFont.normal
@@ -74,6 +68,13 @@ class WebGalleryVC: UIViewController {
         // request second category
         // nice transition
         collectionView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? ImageVC, let sender = sender as? IndexPath {
+            vc.image = choosenCategory == .first ?
+                dataSource.cats[sender.row].image : dataSource.dogs[sender.row].image
+        }
     }
 }
 
