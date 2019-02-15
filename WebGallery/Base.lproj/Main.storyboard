@@ -193,11 +193,45 @@
                         <outlet property="selectionIndicator" destination="wAV-Ps-jJP" id="07h-2V-bN8"/>
                         <outlet property="selectorIndicatorFirstCategoryConstraint" destination="gba-jf-ehg" id="zQh-4l-5TG"/>
                         <outlet property="selectorIndicatorSecondCategoryConstraint" destination="v4g-5k-1vH" id="69O-zE-ZwM"/>
+                        <segue destination="DjD-JB-nEG" kind="presentation" identifier="ToImageVC" id="UHs-4d-X69"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b6q-7H-kqW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="760"/>
+        </scene>
+        <!--ImageVC-->
+        <scene sceneID="brE-w6-7jQ">
+            <objects>
+                <viewController id="DjD-JB-nEG" customClass="ImageVC" customModule="WebGallery" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="EyS-TH-sQ9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PHT-Ba-c4k">
+                                <rect key="frame" x="40" y="147" width="295" height="393"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="PHT-Ba-c4k" secondAttribute="height" multiplier="3:4" id="qm7-U6-lG9"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PHT-Ba-c4k" firstAttribute="leading" secondItem="8JZ-0N-XtI" secondAttribute="leading" constant="40" id="hfu-Hj-IsE"/>
+                            <constraint firstItem="PHT-Ba-c4k" firstAttribute="centerY" secondItem="8JZ-0N-XtI" secondAttribute="centerY" id="jWe-2B-Wvb"/>
+                            <constraint firstItem="PHT-Ba-c4k" firstAttribute="centerX" secondItem="8JZ-0N-XtI" secondAttribute="centerX" id="mCc-qJ-3Fd"/>
+                            <constraint firstItem="PHT-Ba-c4k" firstAttribute="top" relation="greaterThanOrEqual" secondItem="8JZ-0N-XtI" secondAttribute="top" constant="32" id="nsc-7B-OWY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8JZ-0N-XtI"/>
+                    </view>
+                    <connections>
+                        <outlet property="backView" destination="EyS-TH-sQ9" id="NjD-do-5Ii"/>
+                        <outlet property="imageView" destination="PHT-Ba-c4k" id="X9d-ID-OCq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ijp-yY-Sd7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1558" y="760"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">

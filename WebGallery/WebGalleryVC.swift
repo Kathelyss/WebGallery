@@ -38,15 +38,12 @@ class WebGalleryVC: UIViewController {
         collectionView.register(cellNib, forCellWithReuseIdentifier: "WebGalleryCell")
     }
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    
     @IBAction func tapFirstCategoryButton(_ sender: UIButton) {
         firstCategoryButton.titleLabel?.font = UIFont.bold
         secondCategoryButton.titleLabel?.font = UIFont.normal
@@ -57,7 +54,7 @@ class WebGalleryVC: UIViewController {
             self?.view.layoutIfNeeded()
         })
         animator.startAnimation()
-
+        
         // request first category
         // nice transition
         collectionView.reloadData()
@@ -73,7 +70,7 @@ class WebGalleryVC: UIViewController {
             self?.view.layoutIfNeeded()
         })
         animator.startAnimation()
-
+        
         // request second category
         // nice transition
         collectionView.reloadData()
@@ -81,10 +78,10 @@ class WebGalleryVC: UIViewController {
 }
 
 extension WebGalleryVC: UICollectionViewDelegate {
-    //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    //
-    //    }
-    //
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ToImageVC", sender: indexPath)
+    }
+    
 }
 
 extension WebGalleryVC: UICollectionViewDataSource {
