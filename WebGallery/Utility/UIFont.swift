@@ -1,5 +1,5 @@
 //
-//  TextStyle.swift
+//  UIFont.swift
 //  WebGallery
 //
 //  Created by kathelyss on 14/02/2019.

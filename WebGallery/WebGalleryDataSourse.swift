@@ -9,13 +9,13 @@
 import UIKit
 
 class WebGalleryDataSourse {
-    var items: [ServerImage] = []
+    var items: [ImageModel] = []
     let connection = ServerConnection()
     
     var onLoadItems: (() -> Void)?
     
     func getItems(galleryId: String) {
-        connection.getGallery(id: galleryId) { response in
+        connection.requestGallery(id: galleryId) { response in
             self.items = response.photos.photo
             self.onLoadItems?()
         }
@@ -23,6 +23,7 @@ class WebGalleryDataSourse {
     
     func clear() {
         items.removeAll()
+        onLoadItems?()
     }
 
 }

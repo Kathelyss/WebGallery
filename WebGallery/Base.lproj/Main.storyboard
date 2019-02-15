@@ -134,7 +134,7 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wAV-Ps-jJP">
-                                <rect key="frame" x="34" y="102" width="73" height="2"/>
+                                <rect key="frame" x="29.5" y="102" width="82" height="2"/>
                                 <color key="backgroundColor" red="0.91878151890000004" green="0.61664402480000002" blue="0.9930265546" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="62J-OX-NEi"/>
@@ -170,7 +170,7 @@
                             <constraint firstItem="don-Xy-xJD" firstAttribute="leading" secondItem="pFs-iM-no7" secondAttribute="leading" constant="16" id="5LR-cl-fno"/>
                             <constraint firstItem="CMw-b4-fY0" firstAttribute="leading" secondItem="pFs-iM-no7" secondAttribute="leading" constant="16" id="5UD-ua-3Xp"/>
                             <constraint firstItem="pFs-iM-no7" firstAttribute="bottom" secondItem="don-Xy-xJD" secondAttribute="bottom" id="7Gb-UC-OBD"/>
-                            <constraint firstItem="wAV-Ps-jJP" firstAttribute="width" secondItem="MOw-me-hV6" secondAttribute="width" multiplier="2:3" id="7I1-iI-MAw"/>
+                            <constraint firstItem="wAV-Ps-jJP" firstAttribute="width" secondItem="MOw-me-hV6" secondAttribute="width" multiplier="3:4" id="7I1-iI-MAw"/>
                             <constraint firstItem="pFs-iM-no7" firstAttribute="trailing" secondItem="CMw-b4-fY0" secondAttribute="trailing" constant="16" id="ES9-Eo-Xhl"/>
                             <constraint firstItem="CMw-b4-fY0" firstAttribute="top" secondItem="pFs-iM-no7" secondAttribute="top" constant="20" id="H2E-K3-AcQ"/>
                             <constraint firstItem="ko3-iy-BPp" firstAttribute="top" secondItem="CMw-b4-fY0" secondAttribute="bottom" id="KmL-Te-sRJ"/>

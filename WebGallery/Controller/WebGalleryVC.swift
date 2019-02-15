@@ -8,17 +8,13 @@
 
 import UIKit
 
-enum PhotoCategory {
-    case first, second
-}
-
-struct Constant {
-    static let collectionViewColumnsCount: Int = 3
-    static let collectionViewCellsSpacing: CGFloat = 8
-    static let cellRatioHeightToWidth: CGFloat = 1.5
-}
-
 class WebGalleryVC: UIViewController {
+    struct Constant {
+        static let collectionViewColumnsCount: Int = 3
+        static let collectionViewCellsSpacing: CGFloat = 8
+        static let cellRatioHeightToWidth: CGFloat = 1.5
+    }
+
     @IBOutlet var headerLabel: UILabel!
     @IBOutlet var firstCategoryButton: UIButton!
     @IBOutlet var secondCategoryButton: UIButton!
@@ -45,8 +41,6 @@ class WebGalleryVC: UIViewController {
     }
     
     @IBAction func tapFirstCategoryButton(_ sender: UIButton) {
-        firstCategoryButton.titleLabel?.font = UIFont.bold
-        secondCategoryButton.titleLabel?.font = UIFont.normal
         choosenCategory = .first
         selectorIndicatorFirstCategoryConstraint.isActive = true
         selectorIndicatorSecondCategoryConstraint.isActive = false
@@ -54,16 +48,15 @@ class WebGalleryVC: UIViewController {
             self?.view.layoutIfNeeded()
         })
         animator.startAnimation()
+        firstCategoryButton.titleLabel?.font = UIFont.bold
+        secondCategoryButton.titleLabel?.font = UIFont.normal
         
         dataSource.clear()
         dataSource.getItems(galleryId: "72157704515204635")
         // nice transition
-        collectionView.reloadData()
     }
     
     @IBAction func tapSecondCategoryButton(_ sender: UIButton) {
-        firstCategoryButton.titleLabel?.font = UIFont.normal
-        secondCategoryButton.titleLabel?.font = UIFont.bold
         choosenCategory = .second
         selectorIndicatorFirstCategoryConstraint.isActive = false
         selectorIndicatorSecondCategoryConstraint.isActive = true
@@ -71,15 +64,20 @@ class WebGalleryVC: UIViewController {
             self?.view.layoutIfNeeded()
         })
         animator.startAnimation()
+        firstCategoryButton.titleLabel?.font = UIFont.normal
+        secondCategoryButton.titleLabel?.font = UIFont.bold
         
+        dataSource.clear()
         dataSource.getItems(galleryId: "72157662070816797")
         // nice transition
-        collectionView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? ImageVC, let sender = sender as? IndexPath {
-            vc.serverImage = dataSource.items[sender.row]
+        if let vc = segue.destination as? ImageVC,
+            let sender = sender as? IndexPath,
+            let cell = collectionView.cellForItem(at: sender) as? WebGalleryCell {
+            vc.imageModel = dataSource.items[sender.row]
+            vc.smallImage = cell.imageView.image
         }
     }
 }
@@ -101,8 +99,8 @@ extension WebGalleryVC: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WebGalleryCell",
                                                       for: indexPath) as! WebGalleryCell
         let model = dataSource.items[indexPath.row]
-        cell.nameLabel.text = model.title
-        dataSource.connection.getPhoto(model, size: .small) { image in
+        cell.nameLabel.text = model.title.capitalized
+        dataSource.connection.requestImage(model, size: .small) { image in
             DispatchQueue.main.async {
                 cell.imageView.image = image
             }
