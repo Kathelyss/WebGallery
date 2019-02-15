@@ -46,6 +46,11 @@ class WebGalleryVC: UIViewController {
         choosenCategory = .first
         selectorIndicatorFirstCategoryConstraint.isActive = true
         selectorIndicatorSecondCategoryConstraint.isActive = false
+        let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut, animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+        })
+        animator.startAnimation()
+
         // request first category
         // nice transition
         collectionView.reloadData()
@@ -56,8 +61,11 @@ class WebGalleryVC: UIViewController {
         secondCategoryButton.titleLabel?.font = TextStyle.bold
         choosenCategory = .second
         selectorIndicatorFirstCategoryConstraint.isActive = false
-//        selectorIndicatorSecondCategoryConstraint.priority = 1000
         selectorIndicatorSecondCategoryConstraint.isActive = true
+        let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut, animations: { [weak self] in
+            self?.view.layoutIfNeeded()
+        })
+        animator.startAnimation()
 //        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveLinear], animations: {
 //            self.backView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
 //            self.view.layoutIfNeeded()
