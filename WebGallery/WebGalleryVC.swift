@@ -41,8 +41,8 @@ class WebGalleryVC: UIViewController {
      }
      */
     @IBAction func tapFirstCategoryButton(_ sender: UIButton) {
-        firstCategoryButton.titleLabel?.font = TextStyle.bold
-        secondCategoryButton.titleLabel?.font = TextStyle.normal
+        firstCategoryButton.titleLabel?.font = UIFont.bold
+        secondCategoryButton.titleLabel?.font = UIFont.normal
         choosenCategory = .first
         selectorIndicatorFirstCategoryConstraint.isActive = true
         selectorIndicatorSecondCategoryConstraint.isActive = false
@@ -57,8 +57,8 @@ class WebGalleryVC: UIViewController {
     }
     
     @IBAction func tapSecondCategoryButton(_ sender: UIButton) {
-        firstCategoryButton.titleLabel?.font = TextStyle.normal
-        secondCategoryButton.titleLabel?.font = TextStyle.bold
+        firstCategoryButton.titleLabel?.font = UIFont.normal
+        secondCategoryButton.titleLabel?.font = UIFont.bold
         choosenCategory = .second
         selectorIndicatorFirstCategoryConstraint.isActive = false
         selectorIndicatorSecondCategoryConstraint.isActive = true

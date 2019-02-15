@@ -76,11 +76,11 @@
 				9444AF0D221564A8000D07EC /* FavouritesVC.swift */,
 				9444AF1D22156A58000D07EC /* WebGalleryVC.swift */,
 				94192A6922159AE700E48F16 /* WebGalleryDataSourse.swift */,
-				9444AF12221564AB000D07EC /* Assets.xcassets */,
-				9444AF17221564AB000D07EC /* Info.plist */,
 				9444AF1F22156BB6000D07EC /* WebGalleryCell.swift */,
 				9444AF2022156BB6000D07EC /* WebGalleryCell.xib */,
 				94192A6B22159D8400E48F16 /* WebGalleryCellModel.swift */,
+				9444AF12221564AB000D07EC /* Assets.xcassets */,
+				9444AF17221564AB000D07EC /* Info.plist */,
 			);
 			path = WebGallery;
 			sourceTree = "<group>";

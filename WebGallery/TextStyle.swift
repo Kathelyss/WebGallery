@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct TextStyle {
+extension UIFont {
     static let normal = UIFont(name: "AvenirNext-Regular", size: 14)
     static let bold = UIFont(name: "AvenirNext-DemiBold", size: 14)
 }
