@@ -13,7 +13,6 @@ enum PhotoCategory {
 }
 
 struct Constant {
-    static let imageCornerRadius: CGFloat = 6
     static let collectionViewColumnsCount: Int = 3
     static let collectionViewCellsSpacing: CGFloat = 8
     static let cellRatioHeightToWidth: CGFloat = 1.5
@@ -32,10 +31,17 @@ class WebGalleryVC: UIViewController {
     var choosenCategory = PhotoCategory.first
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad()        
         let cellNib = UINib.init(nibName: "WebGalleryCell", bundle: nil)
-        dataSource.createModels()
         collectionView.register(cellNib, forCellWithReuseIdentifier: "WebGalleryCell")
+       
+        dataSource.onLoadItems = { [weak self] in
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+        }
+        dataSource.clear()
+        dataSource.getItems(galleryId: "72157704515204635")
     }
     
     @IBAction func tapFirstCategoryButton(_ sender: UIButton) {
@@ -49,7 +55,8 @@ class WebGalleryVC: UIViewController {
         })
         animator.startAnimation()
         
-        // request first category
+        dataSource.clear()
+        dataSource.getItems(galleryId: "72157704515204635")
         // nice transition
         collectionView.reloadData()
     }
@@ -65,15 +72,14 @@ class WebGalleryVC: UIViewController {
         })
         animator.startAnimation()
         
-        // request second category
+        dataSource.getItems(galleryId: "72157662070816797")
         // nice transition
         collectionView.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ImageVC, let sender = sender as? IndexPath {
-            vc.image = choosenCategory == .first ?
-                dataSource.cats[sender.row].image : dataSource.dogs[sender.row].image
+            vc.serverImage = dataSource.items[sender.row]
         }
     }
 }
@@ -87,21 +93,20 @@ extension WebGalleryVC: UICollectionViewDelegate {
 
 extension WebGalleryVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return choosenCategory == .first ? dataSource.cats.count : dataSource.dogs.count
+        return dataSource.items.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WebGalleryCell",
                                                       for: indexPath) as! WebGalleryCell
-        cell.imageView.layer.masksToBounds = true
-        cell.imageView.layer.cornerRadius = Constant.imageCornerRadius
-        
-        cell.imageView.image = choosenCategory == .first ?
-            dataSource.cats[indexPath.row].image : dataSource.dogs[indexPath.row].image
-        cell.nameLabel.text = choosenCategory == .first ?
-            dataSource.cats[indexPath.row].name : dataSource.dogs[indexPath.row].name
-        
+        let model = dataSource.items[indexPath.row]
+        cell.nameLabel.text = model.title
+        dataSource.connection.getPhoto(model, size: .small) { image in
+            DispatchQueue.main.async {
+                cell.imageView.image = image
+            }
+        }
         return cell
     }
     

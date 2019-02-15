@@ -12,12 +12,19 @@ class ImageVC: UIViewController {
     @IBOutlet var blurView: UIVisualEffectView!
     @IBOutlet var imageView: UIImageView!
    
-    var image: UIImage = #imageLiteral(resourceName: "logo")
+    var serverImage: ServerImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         blurView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(close)))
-        imageView.image = image
+        guard let image = serverImage else { return }
+
+        let connection = ServerConnection()
+        connection.getPhoto(image, size: .large) { image in
+            DispatchQueue.main.async {
+                self.imageView.image = image
+            }
+        }
 //        let photoBlurEffect = UIBlurEffect(style: .light)
 //        let photoBlurView = UIVisualEffectView(effect: photoBlurEffect)
 //        photoBlurView.frame = imageView.bounds

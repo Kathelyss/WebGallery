@@ -8,14 +8,21 @@
 
 import UIKit
 
-struct WebGalleryDataSourse {
-    var cats: [WebGalleryCellModel] = []
-    var dogs: [WebGalleryCellModel] = []
+class WebGalleryDataSourse {
+    var items: [ServerImage] = []
+    let connection = ServerConnection()
     
-    mutating func createModels() {
-        for _ in (0...11) {
-            self.cats.append(WebGalleryCellModel(image: #imageLiteral(resourceName: "kitten"), name: "Kitten"))
-            self.dogs.append(WebGalleryCellModel(image: #imageLiteral(resourceName: "dog"), name: "Puppy"))
+    var onLoadItems: (() -> Void)?
+    
+    func getItems(galleryId: String) {
+        connection.getGallery(id: galleryId) { response in
+            self.items = response.photos.photo
+            self.onLoadItems?()
         }
     }
+    
+    func clear() {
+        items.removeAll()
+    }
+
 }
