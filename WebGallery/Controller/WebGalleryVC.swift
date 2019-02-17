@@ -26,6 +26,8 @@ class WebGalleryVC: UIViewController {
     var dataSource = WebGalleryDataSourse()
     var choosenCategory = PhotoCategory.first
     
+    let imageTransition = TransitionAnimator()
+    
     override func viewDidLoad() {
         super.viewDidLoad()        
         let cellNib = UINib.init(nibName: "WebGalleryCell", bundle: nil)
@@ -78,6 +80,7 @@ class WebGalleryVC: UIViewController {
             let cell = collectionView.cellForItem(at: sender) as? WebGalleryCell {
             vc.imageModel = dataSource.items[sender.row]
             vc.smallImage = cell.imageView.image
+            vc.transitioningDelegate = self
         }
     }
 }
@@ -117,5 +120,21 @@ extension WebGalleryVC: UICollectionViewDelegateFlowLayout {
         let cellWidth = CGFloat(Int(collectionView.bounds.width / CGFloat(Constant.collectionViewColumnsCount)
             - Constant.collectionViewCellsSpacing))
         return CGSize(width: cellWidth, height: cellWidth * Constant.cellRatioHeightToWidth)
+    }
+
+}
+
+extension WebGalleryVC: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        imageTransition.presenting = true
+        return imageTransition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+      imageTransition.presenting = false
+        return imageTransition
     }
 }
