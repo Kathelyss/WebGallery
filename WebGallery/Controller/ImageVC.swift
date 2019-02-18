@@ -15,6 +15,7 @@ class ImageVC: UIViewController {
     var imageModel: ImageModel?
     var backGroundBlur: BlurryOverlayView?
     var imageBlur: BlurryOverlayView?
+    let circlePulsatorView = CirclePulsator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,8 @@ class ImageVC: UIViewController {
         connection.requestImage(imageModel, size: .large) { image in
             DispatchQueue.main.async {
                 self.imageView.image = image
-                self.imageBlur?.blurOut(duration: 0.01)
+                self.circlePulsatorView.isPulsating = false
+                self.imageBlur?.blurOut(duration: 0.2)
             }
         }
     }

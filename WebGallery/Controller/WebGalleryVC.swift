@@ -14,7 +14,7 @@ class WebGalleryVC: UIViewController {
         static let collectionViewCellsSpacing: CGFloat = 8
         static let cellRatioHeightToWidth: CGFloat = 1.5
     }
-
+    
     @IBOutlet var headerLabel: UILabel!
     @IBOutlet var firstCategoryButton: UIButton!
     @IBOutlet var secondCategoryButton: UIButton!
@@ -32,13 +32,26 @@ class WebGalleryVC: UIViewController {
         super.viewDidLoad()        
         let cellNib = UINib.init(nibName: "WebGalleryCell", bundle: nil)
         collectionView.register(cellNib, forCellWithReuseIdentifier: "WebGalleryCell")
-       
+        
+        let indexPaths = collectionView.indexPathsForVisibleItems
         dataSource.onLoadItems = { [weak self] in
             DispatchQueue.main.async {
-                self?.collectionView.reloadData()
+                guard let self = self else { return }
+                
+                if indexPaths.isEmpty {
+                    self.collectionView.reloadData()
+                } else {
+                    self.collectionView.performBatchUpdates({
+                        self.collectionView.deleteItems(at: indexPaths)
+                        self.collectionView.insertItems(at: indexPaths)
+                    }, completion: nil)
+//                    self.collectionView.reloadItems(at: indexPaths)
+                    
+                }
+                
+                //                self?.collectionView.reloadData()
             }
         }
-        dataSource.clear()
         dataSource.getItems(galleryId: "72157704515204635")
     }
     
@@ -53,9 +66,10 @@ class WebGalleryVC: UIViewController {
         firstCategoryButton.titleLabel?.font = UIFont.bold
         secondCategoryButton.titleLabel?.font = UIFont.normal
         
-        dataSource.clear()
+        //        dataSource.clear()
         dataSource.getItems(galleryId: "72157704515204635")
         // nice transition
+        (collectionView.collectionViewLayout as? SlidingLayout)?.transitionDirection = .left
     }
     
     @IBAction func tapSecondCategoryButton(_ sender: UIButton) {
@@ -69,9 +83,11 @@ class WebGalleryVC: UIViewController {
         firstCategoryButton.titleLabel?.font = UIFont.normal
         secondCategoryButton.titleLabel?.font = UIFont.bold
         
-        dataSource.clear()
+        //dataSource.clear()
         dataSource.getItems(galleryId: "72157662070816797")
+        
         // nice transition
+        (collectionView.collectionViewLayout as? SlidingLayout)?.transitionDirection = .right
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -121,7 +137,7 @@ extension WebGalleryVC: UICollectionViewDelegateFlowLayout {
             - Constant.collectionViewCellsSpacing))
         return CGSize(width: cellWidth, height: cellWidth * Constant.cellRatioHeightToWidth)
     }
-
+    
 }
 
 extension WebGalleryVC: UIViewControllerTransitioningDelegate {
@@ -134,7 +150,7 @@ extension WebGalleryVC: UIViewControllerTransitioningDelegate {
     }
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-      imageTransition.presenting = false
+        imageTransition.presenting = false
         return imageTransition
     }
 }

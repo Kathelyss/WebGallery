@@ -11,9 +11,6 @@ import UIKit
 class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     let duration = 0.3
     var presenting = true
-    var originFrame = CGRect.zero
-    
-    var dismissCompletion: (()->Void)?
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
@@ -48,13 +45,17 @@ class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 toVC.backGroundBlur = BlurryOverlayView()
                 toVC.backGroundBlur?.frame = toVC.view.bounds
                 toVC.view.insertSubview(toVC.backGroundBlur!, belowSubview: toVC.imageView)
-                toVC.backGroundBlur?.blurIn(amount: 0.2, duration: duration)
+                toVC.backGroundBlur?.blurIn(amount: CGFloat(duration), duration: duration)
                 
                 let animator = UIViewPropertyAnimator.init(duration: duration, curve: .easeInOut) {
                     snapshotView.frame = animationFinalFrame
                 }
                 
                 animator.addCompletion { _ in
+                    toVC.circlePulsatorView.frame = toVC.view.bounds
+                    toVC.view.addSubview(toVC.circlePulsatorView)
+                    toVC.circlePulsatorView.setup()
+                    toVC.circlePulsatorView.startPulsations(from: CircleSize.min, to: CircleSize.max)
                     toVC.imageView.isHidden = false
                     snapshotView.removeFromSuperview()
                     transitionContext.completeTransition(true)

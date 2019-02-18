@@ -26,6 +26,8 @@
 		9444AF1E22156A58000D07EC /* WebGalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9444AF1D22156A58000D07EC /* WebGalleryVC.swift */; };
 		9444AF2122156BB6000D07EC /* WebGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9444AF1F22156BB6000D07EC /* WebGalleryCell.swift */; };
 		9444AF2222156BB6000D07EC /* WebGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9444AF2022156BB6000D07EC /* WebGalleryCell.xib */; };
+		9451AF24221A0A7B00E33E31 /* CollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9451AF23221A0A7B00E33E31 /* CollectionViewLayout.swift */; };
+		9451AF26221A150400E33E31 /* CirclePulsator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9451AF25221A150400E33E31 /* CirclePulsator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		9444AF1D22156A58000D07EC /* WebGalleryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebGalleryVC.swift; sourceTree = "<group>"; };
 		9444AF1F22156BB6000D07EC /* WebGalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebGalleryCell.swift; sourceTree = "<group>"; };
 		9444AF2022156BB6000D07EC /* WebGalleryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebGalleryCell.xib; sourceTree = "<group>"; };
+		9451AF23221A0A7B00E33E31 /* CollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewLayout.swift; sourceTree = "<group>"; };
+		9451AF25221A150400E33E31 /* CirclePulsator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclePulsator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +154,8 @@
 				94192A6F2216BE8800E48F16 /* SupportingFiles */,
 				9444AF17221564AB000D07EC /* Info.plist */,
 				94192A832218A29100E48F16 /* TransitionAnimator.swift */,
+				9451AF23221A0A7B00E33E31 /* CollectionViewLayout.swift */,
+				9451AF25221A150400E33E31 /* CirclePulsator.swift */,
 			);
 			path = WebGallery;
 			sourceTree = "<group>";
@@ -236,7 +242,9 @@
 				9444AF0E221564A8000D07EC /* FavouritesVC.swift in Sources */,
 				9444AF2122156BB6000D07EC /* WebGalleryCell.swift in Sources */,
 				94192A6A22159AE700E48F16 /* WebGalleryDataSourse.swift in Sources */,
+				9451AF24221A0A7B00E33E31 /* CollectionViewLayout.swift in Sources */,
 				9444AF0A221564A8000D07EC /* AppDelegate.swift in Sources */,
+				9451AF26221A150400E33E31 /* CirclePulsator.swift in Sources */,
 				9444AF0C221564A8000D07EC /* HomeVC.swift in Sources */,
 				94192A7D22175A8500E48F16 /* RequestModel.swift in Sources */,
 				94192A792217596E00E48F16 /* GalleryModel.swift in Sources */,
