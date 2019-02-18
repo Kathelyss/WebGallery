@@ -20,10 +20,4 @@ class WebGalleryDataSourse {
             self.onLoadItems?()
         }
     }
-    
-    func clear() {
-        items.removeAll()
-        onLoadItems?()
-    }
-
 }

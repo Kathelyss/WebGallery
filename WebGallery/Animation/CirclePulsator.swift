@@ -37,14 +37,17 @@ class CirclePulsator: UIView {
     func startPulsations(from minSize: CGFloat, to maxSize: CGFloat) {
         UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
             UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.5, animations: {
-                self.pulsarView.frame = CGRect(x: self.bounds.midX - minSize / 2, y: self.bounds.midY - minSize / 2,
-                                               width: minSize, height: minSize)
+                self.pulsarView.frame = CGRect(x: self.bounds.midX - minSize / 2,
+                                               y: self.bounds.midY - minSize / 2,
+                                               width: minSize,
+                                               height: minSize)
                 self.pulsarView.layer.cornerRadius = minSize / 2
             })
             UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5, animations: {
-                
-                self.pulsarView.frame = CGRect(x: self.bounds.midX - maxSize / 2, y: self.bounds.midY - maxSize / 2,
-                                               width: maxSize, height: maxSize)
+                self.pulsarView.frame = CGRect(x: self.bounds.midX - maxSize / 2,
+                                               y: self.bounds.midY - maxSize / 2,
+                                               width: maxSize,
+                                               height: maxSize)
                 self.pulsarView.layer.cornerRadius = maxSize / 2
             })
         }) { _ in
@@ -57,8 +60,10 @@ class CirclePulsator: UIView {
     func endPulsations() {
         let finalWidth = self.bounds.width
         let finalAnimation = UIViewPropertyAnimator.init(duration: 0.2, curve: .easeInOut) {
-            self.pulsarView.frame = CGRect(x: self.bounds.midX - finalWidth / 2, y: self.bounds.midY - finalWidth / 2,
-                                           width: finalWidth, height: finalWidth)
+            self.pulsarView.frame = CGRect(x: self.bounds.midX - finalWidth / 2,
+                                           y: self.bounds.midY - finalWidth / 2,
+                                           width: finalWidth,
+                                           height: finalWidth)
             self.pulsarView.layer.cornerRadius = finalWidth / 2
             self.pulsarView.alpha = 0.0
         }

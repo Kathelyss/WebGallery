@@ -108,7 +108,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="tapFirstCategoryButton:" destination="kNP-LB-X9s" eventType="touchUpInside" id="NU2-7n-vSo"/>
+                                            <action selector="tapButton:" destination="kNP-LB-X9s" eventType="touchUpInside" id="1bf-QH-c39"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NAY-0j-HSW">
@@ -118,7 +118,7 @@
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <action selector="tapSecondCategoryButton:" destination="kNP-LB-X9s" eventType="touchUpInside" id="Mg7-L4-45a"/>
+                                            <action selector="tapButton:" destination="kNP-LB-X9s" eventType="touchUpInside" id="t2f-Rj-muO"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="azW-5W-oFU">
@@ -143,7 +143,12 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="don-Xy-xJD">
                                 <rect key="frame" x="16" y="125" width="343" height="493"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <collectionViewLayout key="collectionViewLayout" id="qJy-Bh-VDg" customClass="SlidingLayout" customModule="WebGallery" customModuleProvider="target"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hfT-Wn-3oR">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="WebGalleryCell" id="ZzU-Nq-yoA" customClass="WebGalleryCell" customModule="WebGallery" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -183,7 +188,6 @@
                     <connections>
                         <outlet property="collectionView" destination="don-Xy-xJD" id="aq1-kl-jAI"/>
                         <outlet property="firstCategoryButton" destination="MOw-me-hV6" id="w3V-Lb-7on"/>
-                        <outlet property="headerLabel" destination="CMw-b4-fY0" id="Tb8-2U-T86"/>
                         <outlet property="secondCategoryButton" destination="NAY-0j-HSW" id="tPw-8I-qM4"/>
                         <outlet property="selectionIndicator" destination="wAV-Ps-jJP" id="07h-2V-bN8"/>
                         <outlet property="selectorIndicatorFirstCategoryConstraint" destination="gba-jf-ehg" id="zQh-4l-5TG"/>

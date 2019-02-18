@@ -13,8 +13,8 @@ class ImageVC: UIViewController {
     
     var smallImage: UIImage?
     var imageModel: ImageModel?
-    var backGroundBlur: BlurryOverlayView?
-    var imageBlur: BlurryOverlayView?
+    var backGroundBlur: BlurView?
+    var imageBlur: BlurView?
     let circlePulsatorView = CirclePulsator()
     
     override func viewDidLoad() {
@@ -26,17 +26,17 @@ class ImageVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if backGroundBlur == nil {
-            backGroundBlur = BlurryOverlayView()
+            backGroundBlur = BlurView()
             backGroundBlur?.frame = view.bounds
             view.insertSubview(backGroundBlur!, belowSubview: imageView)
-            backGroundBlur?.blurIn()
+            backGroundBlur?.blur()
         }
         
         if imageBlur == nil {
-            imageBlur = BlurryOverlayView()
+            imageBlur = BlurView()
             imageBlur?.frame = imageView.bounds
             imageView.addSubview(imageBlur!)
-            imageBlur?.blurIn()
+            imageBlur?.blur()
         }
     }
     
@@ -49,7 +49,7 @@ class ImageVC: UIViewController {
             DispatchQueue.main.async {
                 self.imageView.image = image
                 self.circlePulsatorView.isPulsating = false
-                self.imageBlur?.blurOut(duration: 0.2)
+                self.imageBlur?.unblur()
             }
         }
     }
@@ -64,73 +64,3 @@ extension ImageVC: UIViewControllerTransitioningDelegate {
     
 }
 
-class BlurryOverlayView: UIVisualEffectView {
-    private var animator: UIViewPropertyAnimator!
-    private var delta: CGFloat = 0 // The amount to change fractionComplete for each tick
-    private var target: CGFloat = 0 // The fractionComplete we're animating to
-    private(set) var isBlurred = false
-    private var displayLink: CADisplayLink!
-    
-    override init(effect: UIVisualEffect?) {
-        super.init(effect: effect)
-        setup()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-    
-    private func setup() {
-        effect = nil // Starts out with no blur
-        isHidden = true // Enables user interaction through the view
-        
-        // The animation to add an effect
-        animator = UIViewPropertyAnimator(duration: 1, curve: .easeInOut) {
-            self.effect = UIBlurEffect(style: .light)
-        }
-        animator.pausesOnCompletion = true // Fixes background bug
-        
-        // Using a display link to animate animator.fractionComplete
-        displayLink = CADisplayLink(target: self, selector: #selector(tick))
-        displayLink.isPaused = true
-        displayLink.add(to: .main, forMode: .common)
-    }
-    
-    func blurIn(amount: CGFloat = 0.05, duration: TimeInterval = 0.01) {
-        guard isBlurred == false else { return }
-        
-        isHidden = false // Disable user interaction
-        
-        target = amount
-        delta = amount / (60 * CGFloat(duration)) // Assuming 60hz refresh rate
-        
-        // Start animating fractionComplete
-        displayLink.isPaused = false
-    }
-    
-    func blurOut(duration: TimeInterval = 0.01) {
-        guard isBlurred else { return }
-        
-        target = 0
-        delta = -1 * animator.fractionComplete / (60 * CGFloat(duration)) // Assuming 60hz refresh rate
-        
-        // Start animating fractionComplete
-        displayLink.isPaused = false
-    }
-    
-    @objc private func tick() {
-        animator.fractionComplete += delta
-        
-        if isBlurred && animator.fractionComplete <= 0 {
-            // Done blurring out
-            isBlurred = false
-            isHidden = true
-            displayLink.isPaused = true
-        } else if isBlurred == false && animator.fractionComplete >= target {
-            // Done blurring in
-            isBlurred = true
-            displayLink.isPaused = true
-        }
-    }
-}

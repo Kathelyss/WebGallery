@@ -1,5 +1,5 @@
 //
-//  TransitionAnimator.swift
+//  CellImageTransitionAnimator.swift
 //  WebGallery
 //
 //  Created by kathelyss on 16/02/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+class CellImageTransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     let duration = 0.3
     var presenting = true
     
@@ -42,15 +42,14 @@ class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 toVC.imageView.isHidden = true
                 container.addSubview(toVC.view)
                 
-                toVC.backGroundBlur = BlurryOverlayView()
+                toVC.backGroundBlur = BlurView()
                 toVC.backGroundBlur?.frame = toVC.view.bounds
                 toVC.view.insertSubview(toVC.backGroundBlur!, belowSubview: toVC.imageView)
-                toVC.backGroundBlur?.blurIn(amount: CGFloat(duration), duration: duration)
+                toVC.backGroundBlur?.blur(duration: duration)
                 
                 let animator = UIViewPropertyAnimator.init(duration: duration, curve: .easeInOut) {
                     snapshotView.frame = animationFinalFrame
                 }
-                
                 animator.addCompletion { _ in
                     toVC.circlePulsatorView.frame = toVC.view.bounds
                     toVC.view.addSubview(toVC.circlePulsatorView)
@@ -73,7 +72,6 @@ class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
             
             if let cell = toVC.collectionView.cellForItem(at: cellIndexPath) as? WebGalleryCell {
                 let cellInCollView = cell.convert(cell.imageView.frame, to: toVC.collectionView)
-                
                 let animationInitialFrame = fromVC.imageView.frame
                 let animationFinalFrame = toVC.collectionView.convert(cellInCollView, to: nil)
                 guard let snapshotView = fromVC.imageView.snapshotView(afterScreenUpdates: false) else {
@@ -84,7 +82,7 @@ class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                 snapshotView.frame = animationInitialFrame
                 fromVC.view.addSubview(snapshotView)
                 fromVC.imageView.isHidden = true
-                fromVC.backGroundBlur?.blurOut(duration: duration)
+                fromVC.backGroundBlur?.blur(duration: duration)
                 let animator = UIViewPropertyAnimator.init(duration: duration, curve: .easeInOut) {
                     snapshotView.frame = animationFinalFrame
                     snapshotView.layer.cornerRadius = cell.layer.cornerRadius
@@ -95,7 +93,6 @@ class TransitionAnimator: NSObject, UIViewControllerAnimatedTransitioning {
                     transitionContext.completeTransition(true)
                 }
                 animator.startAnimation()
-                
             }
         }
     }

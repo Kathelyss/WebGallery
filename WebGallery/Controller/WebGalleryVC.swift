@@ -15,7 +15,6 @@ class WebGalleryVC: UIViewController {
         static let cellRatioHeightToWidth: CGFloat = 1.5
     }
     
-    @IBOutlet var headerLabel: UILabel!
     @IBOutlet var firstCategoryButton: UIButton!
     @IBOutlet var secondCategoryButton: UIButton!
     @IBOutlet var selectionIndicator: UIView!
@@ -24,70 +23,34 @@ class WebGalleryVC: UIViewController {
     @IBOutlet var collectionView: UICollectionView!
     
     var dataSource = WebGalleryDataSourse()
-    var choosenCategory = PhotoCategory.first
     
-    let imageTransition = TransitionAnimator()
+    let imageTransition = CellImageTransitionAnimator()
     
     override func viewDidLoad() {
         super.viewDidLoad()        
         let cellNib = UINib.init(nibName: "WebGalleryCell", bundle: nil)
         collectionView.register(cellNib, forCellWithReuseIdentifier: "WebGalleryCell")
-        
-        let indexPaths = collectionView.indexPathsForVisibleItems
         dataSource.onLoadItems = { [weak self] in
             DispatchQueue.main.async {
-                guard let self = self else { return }
-                
-                if indexPaths.isEmpty {
-                    self.collectionView.reloadData()
-                } else {
-                    self.collectionView.performBatchUpdates({
-                        self.collectionView.deleteItems(at: indexPaths)
-                        self.collectionView.insertItems(at: indexPaths)
-                    }, completion: nil)
-//                    self.collectionView.reloadItems(at: indexPaths)
-                    
-                }
-                
-                //                self?.collectionView.reloadData()
+                self?.collectionView.reloadData()
             }
         }
         dataSource.getItems(galleryId: "72157704515204635")
     }
     
-    @IBAction func tapFirstCategoryButton(_ sender: UIButton) {
-        choosenCategory = .first
-        selectorIndicatorFirstCategoryConstraint.isActive = true
-        selectorIndicatorSecondCategoryConstraint.isActive = false
+    @IBAction func tapButton(_ sender: UIButton) {
+        selectorIndicatorFirstCategoryConstraint.isActive = (sender == firstCategoryButton) ? true : false
+        selectorIndicatorSecondCategoryConstraint.isActive = !selectorIndicatorFirstCategoryConstraint.isActive
         let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut, animations: { [weak self] in
             self?.view.layoutIfNeeded()
         })
         animator.startAnimation()
-        firstCategoryButton.titleLabel?.font = UIFont.bold
-        secondCategoryButton.titleLabel?.font = UIFont.normal
+        firstCategoryButton.titleLabel?.font = (sender == firstCategoryButton) ? UIFont.bold : UIFont.normal
+        secondCategoryButton.titleLabel?.font = (sender == secondCategoryButton) ? UIFont.bold : UIFont.normal
         
-        //        dataSource.clear()
-        dataSource.getItems(galleryId: "72157704515204635")
-        // nice transition
-        (collectionView.collectionViewLayout as? SlidingLayout)?.transitionDirection = .left
-    }
-    
-    @IBAction func tapSecondCategoryButton(_ sender: UIButton) {
-        choosenCategory = .second
-        selectorIndicatorFirstCategoryConstraint.isActive = false
-        selectorIndicatorSecondCategoryConstraint.isActive = true
-        let animator = UIViewPropertyAnimator(duration: 0.5, curve: .easeInOut, animations: { [weak self] in
-            self?.view.layoutIfNeeded()
-        })
-        animator.startAnimation()
-        firstCategoryButton.titleLabel?.font = UIFont.normal
-        secondCategoryButton.titleLabel?.font = UIFont.bold
-        
-        //dataSource.clear()
-        dataSource.getItems(galleryId: "72157662070816797")
-        
-        // nice transition
-        (collectionView.collectionViewLayout as? SlidingLayout)?.transitionDirection = .right
+        let galleryId = (sender == firstCategoryButton) ? "72157704515204635" : "72157662070816797"
+        dataSource.getItems(galleryId: galleryId)
+        // let there be nice collectionView transition
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
